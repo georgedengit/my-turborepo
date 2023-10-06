@@ -13,30 +13,78 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 module.exports = {
   extends: [
-    "@vercel/style-guide/eslint/node",
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/react",
-    "@vercel/style-guide/eslint/next",
-    "eslint-config-turbo",
-  ].map(require.resolve),
-  parserOptions: {
-    project,
-  },
-  globals: {
-    React: true,
-    JSX: true,
-  },
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project,
-      },
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  plugins: ["unused-imports", "testing-library"],
+  overrides: [
+    {
+      files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(test).[jt]s?(x)"],
+      extends: ["plugin:testing-library/react"],
     },
-  },
-  ignorePatterns: ["node_modules/", "dist/"],
-  // add rules configurations here
+  ],
   rules: {
-    "import/no-default-export": "off",
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        default: "generic",
+        readonly: "generic",
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": [
+      "error",
+      {
+        ignoreRestArgs: true,
+      },
+    ],
+    curly: "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: [
+          {
+            group: ["swr"],
+            importNames: ["useSWR"],
+            message: 'Please use "getPost" instead of "useSWR" directly',
+          },
+        ],
+      },
+    ],
+    "no-unused-vars": "off",
+    "padding-line-between-statements": [
+      "error",
+      {
+        blankLine: "always",
+        prev: "*",
+        next: ["block-like", "function", "multiline-const", "return"],
+      },
+    ],
+    "prefer-const": [
+      "error",
+      {
+        destructuring: "any",
+        ignoreReadBeforeAssign: false,
+      },
+    ],
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      {
+        props: "never",
+        children: "never",
+        propElementValues: "always",
+      },
+    ],
+    "react/self-closing-comp": [
+      "error",
+      {
+        component: true,
+        html: true,
+      },
+    ],
+    "react-hooks/exhaustive-deps": "error",
+    "unused-imports/no-unused-imports": "off",
+    "unused-imports/no-unused-vars": "off",
   },
 };
