@@ -1,16 +1,3 @@
-import { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import { Button } from "@mantine/core";
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
-
-export const Button = ({
-  children,
-  ...other
-}: PropsWithChildren<ButtonProps>) => {
-  return (
-    <button type="button" {...other}>
-      {children}
-    </button>
-  );
-};
-
-Button.displayName = "Button";
+export { Button };
