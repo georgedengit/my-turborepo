@@ -1,4 +1,4 @@
-import { CheckIcon, Group } from "@mantine/core";
+import { Group } from "@mantine/core";
 import type { Meta, StoryObj } from "@storybook/react";
 import { IconArrowRight, IconDownload, IconPhoto } from "@tabler/icons-react";
 import { Button } from "ui";
