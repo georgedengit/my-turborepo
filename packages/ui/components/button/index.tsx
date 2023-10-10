@@ -1,3 +1,13 @@
-import { Button } from "@mantine/core";
+import { Button as BaseButton } from "@mantine/core";
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
 
-export { Button };
+export type ButtonRef = ElementRef<typeof BaseButton>;
+export type ButtonProps<T = "button"> = ComponentPropsWithoutRef<
+  typeof BaseButton<T>
+>;
+
+export const Button = forwardRef<ButtonRef, ButtonProps>((props, ref) => (
+  <BaseButton ref={ref} {...props} />
+));
+
+Button.displayName = "Button";

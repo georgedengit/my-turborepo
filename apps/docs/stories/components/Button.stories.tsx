@@ -9,7 +9,18 @@ const meta: Meta<typeof Button> = {
   tags: ["autodoc"],
   argTypes: {
     color: { control: "color" },
-    fullWidth: { type: "boolean" },
+    variant: {
+      control: "inline-radio",
+      options: [
+        "default",
+        "filled",
+        "light",
+        "outline",
+        "subtle",
+        "transparent",
+        "white",
+      ],
+    },
   },
 };
 
