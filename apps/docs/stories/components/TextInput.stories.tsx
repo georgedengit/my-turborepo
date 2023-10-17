@@ -1,4 +1,4 @@
-import { Code, Group, Space, Stack } from "@mantine/core";
+import { Code, Group, Stack } from "@mantine/core";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -29,29 +29,46 @@ export const Default: Story = {
   ),
 };
 
-type ControlledDemo = {
-  input1: string;
-};
-
 export const Controlled: Story = {
   args: Default.args,
   render: (props) => {
-    const [data, setData] = useState<ControlledDemo>();
-    const { register, handleSubmit } = useForm<ControlledDemo>();
+    const [value, setValue] = useState("");
+
+    return (
+      <Stack align="start">
+        <TextInput
+          {...props}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <Code block>{`value: ${JSON.stringify(value, null, 2)}`}</Code>
+      </Stack>
+    );
+  },
+};
+
+type ExampleForm = {
+  input1: string;
+};
+
+export const Form: Story = {
+  args: Default.args,
+  render: (props) => {
+    const [data, setData] = useState<ExampleForm>();
+    const { register, handleSubmit } = useForm<ExampleForm>();
 
     const onSubmit = handleSubmit(setData);
 
     return (
-      <>
+      <Stack align="start">
         <form onSubmit={onSubmit}>
-          <Stack w={300}>
+          <Stack>
             <TextInput {...props} {...register("input1")} />
             <Button type="submit">Submit</Button>
           </Stack>
         </form>
-        <Space h="md" />
-        <Code block>{JSON.stringify(data, null, 2)}</Code>
-      </>
+        {data && <Code block>{JSON.stringify(data, null, 2)}</Code>}
+      </Stack>
     );
   },
 };

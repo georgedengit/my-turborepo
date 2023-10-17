@@ -1,30 +1,36 @@
-import {
-  Anchor,
-  AppShell,
-  Burger,
-  Group,
-  List,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Anchor, AppShell, Burger, List, Text, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { Button } from "ui";
 
 export const ExamplePage = () => {
-  const [opened, { toggle }] = useDisclosure();
+  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
+  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
   return (
     <AppShell
-      header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
+      header={{ height: 60 }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
+      }}
     >
       <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <div>Logo</div>
+        <Burger
+          hiddenFrom="sm"
+          opened={mobileOpened}
+          onClick={toggleMobile}
+          size="sm"
+        />
+        <div>Header</div>
       </AppShell.Header>
       <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
 
       <AppShell.Main>
+        <Button onClick={toggleDesktop} visibleFrom="sm">
+          Toggle navbar
+        </Button>
         <Title order={2} mb={2}>
           Pages in Storybook
         </Title>
