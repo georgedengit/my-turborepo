@@ -1,4 +1,12 @@
-import { Anchor, AppShell, Burger, List, Text, Title } from "@mantine/core";
+import {
+  Anchor,
+  AppShell,
+  Burger,
+  Group,
+  List,
+  Text,
+  Title,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Button } from "ui";
 
@@ -17,20 +25,25 @@ export const ExamplePage = () => {
       }}
     >
       <AppShell.Header>
-        <Burger
-          hiddenFrom="sm"
-          opened={mobileOpened}
-          onClick={toggleMobile}
-          size="sm"
-        />
-        <div>Header</div>
+        <Group h="100%" px="md">
+          <Burger
+            opened={mobileOpened}
+            onClick={toggleMobile}
+            hiddenFrom="sm"
+            size="sm"
+          />
+          <Burger
+            opened={desktopOpened}
+            onClick={toggleDesktop}
+            visibleFrom="sm"
+            size="sm"
+          />
+          <div>Header</div>
+        </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
 
       <AppShell.Main>
-        <Button onClick={toggleDesktop} visibleFrom="sm">
-          Toggle navbar
-        </Button>
         <Title order={2} mb={2}>
           Pages in Storybook
         </Title>
