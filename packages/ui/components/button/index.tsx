@@ -1,5 +1,6 @@
 import { Button as BaseButton } from "@mantine/core";
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import type { ComponentPropsWithoutRef, ElementRef } from "react";
+import { forwardRef } from "react";
 
 export type ButtonRef = ElementRef<typeof BaseButton>;
 export type ButtonProps<T = "button"> = ComponentPropsWithoutRef<

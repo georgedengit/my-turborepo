@@ -1,4 +1,5 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import type { ComponentPropsWithoutRef, ElementRef } from "react";
+import { forwardRef } from "react";
 import { Select as BaseSelect } from "@mantine/core";
 
 export type SelectRef = ElementRef<typeof BaseSelect>;

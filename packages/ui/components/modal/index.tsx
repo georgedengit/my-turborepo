@@ -1,7 +1,5 @@
-import {
-  Modal as BaseModal,
-  ModalProps as BaseModalProps,
-} from "@mantine/core";
+import type { ModalProps as BaseModalProps } from "@mantine/core";
+import { Modal as BaseModal } from "@mantine/core";
 import { forwardRef } from "react";
 
 export type ModalProps = BaseModalProps;
